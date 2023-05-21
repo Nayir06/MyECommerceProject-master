@@ -1,0 +1,45 @@
+﻿Model MVC_MyProject.Models.CartModel.Cart
+@{
+    ViewData["Title"] = "My Cart";
+    Layout = "~~/Views/Shared/_Layout.cshtml";
+    decimal? totalPrice = 0;
+}
+
+<div class="row">
+    <div class="col-md-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>UnitPrice</th>
+                    <th>Quantity</th>
+                    <th>SubTotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model._myCart.Values)
+                {
+                    totalPrice += @item.SubTotal;
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.SubTotal</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h3>Toplam Tutar: @totalPrice ₺</h3>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">Siparişi Tamamla</a>
+                <br />
+                <a href="#" class="btn btn-primary">Alışverişe Devam Et</a>
+            </div>
+        </div>
+    </div>
+</div>
